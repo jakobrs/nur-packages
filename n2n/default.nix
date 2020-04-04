@@ -28,6 +28,6 @@ stdenv.mkDerivation rec {
   meta = {
     description = "A layer two peer-to-peer VPN (with patches: darwin-local-sbin-to-sbin.patch)";
     license = lib.licenses.gpl3;
-    maintainers = [ ];
+    homepage = https://ntop.org/n2n/;
   };
 }
