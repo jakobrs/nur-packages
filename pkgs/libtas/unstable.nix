@@ -47,7 +47,6 @@ in relevantStdenv.mkDerivation rec {
 
   patches = [
     ./libtaspath.patch
-    ./luapcpath.patch
   ];
 
   # Note that this builds an extra .so file in the same derivation
