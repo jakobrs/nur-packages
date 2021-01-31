@@ -15,6 +15,10 @@ rec {
   libtasNoMulti-unstable = pkgs.libsForQt5.callPackage ./pkgs/libtas/unstable.nix { multiArch = false; };
   libtasMulti-unstable = pkgs.libsForQt5.callPackage ./pkgs/libtas/unstable.nix { multiArch = true; };
 
+  obs-xdg-portal = pkgs.callPackage ./pkgs/obs-xdg-portal {
+    obs-studio = obs-studio-wayland;
+  };
+
   obs-studio-wayland = pkgs.obs-studio.overrideAttrs (old: {
     pname = "obs-studio-wayland-unstable";
     version = "2021-01-28";
