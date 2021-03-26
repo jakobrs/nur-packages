@@ -8,6 +8,8 @@ rec {
 
   bobrossquotes = pkgs.python3Packages.callPackage ./pkgs/bobrossquotes {};
 
+  bsnes = pkgs.callPackage ./pkgs/bsnes {};
+
   cpptoml = pkgs.callPackage ./pkgs/cpptoml {};
   wireplumber = pkgs.callPackage ./pkgs/wireplumber { inherit cpptoml; };
 
