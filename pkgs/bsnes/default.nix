@@ -1,8 +1,15 @@
 { lib, stdenv, fetchFromGitHub
 , pkg-config
-, openal, libpulseaudio, libao, SDL2, libudev, gtk3, libXv, alsaLib }:
+, openal, libpulseaudio, libao, SDL2, libudev, libXv, alsaLib, libXrandr
+, hiroPlatform ? "qt5" # One of "gtk3" and "qt5"
+, gtk3
+, qtbase, wrapQtAppsHook }:
 
-stdenv.mkDerivation rec {
+let
+  useGtk = hiroPlatform == "gtk3";
+  useQt = hiroPlatform == "qt5";
+
+in stdenv.mkDerivation rec {
   pname = "bsnes";
   version = "unstable-2021-03-13";
 
@@ -13,19 +20,24 @@ stdenv.mkDerivation rec {
     hash = "sha256:1gmgw0v1nd0chy7jwl17mq12jy100hip1hnwgqfbwqs0f0p0v42y";
   };
 
+  postUnpack = ''
+    chmod +w source -R
+  '';
+
   sourceRoot = "source/bsnes";
 
   makeFlags = [
-    "hiro=gtk3"
+    "hiro=${hiroPlatform}"
     "out=bsnes"
     "prefix=${placeholder "out"}"
   ];
 
   enableParallelBuilding = true;
 
-  nativeBuildInputs = [ pkg-config ];
+  nativeBuildInputs = [ pkg-config ] ++ lib.optional useQt wrapQtAppsHook;
 
   buildInputs = [
-    openal libpulseaudio libao SDL2 libudev gtk3 libXv alsaLib
-  ];
+    openal libpulseaudio libao SDL2 libudev libXv alsaLib libXrandr
+  ] ++ lib.optional useGtk gtk3
+    ++ lib.optional useQt qtbase;
 }
