@@ -21,8 +21,8 @@ let
   relevantStdenv = if multiArch then multiStdenv else stdenv;
 
 in relevantStdenv.mkDerivation rec {
-  pname = "libtas-unstable";
-  version = "2021-02-28";
+  pname = "libtas";
+  version = "unstable-2021-02-28";
 
   src = fetchFromGitHub {
     owner = "clementgallet";
