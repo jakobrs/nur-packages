@@ -12,6 +12,8 @@ rec {
     inherit (pkgs.qt5) qtbase wrapQtAppsHook;
   };
 
+  avizo = pkgs.callPackage ./pkgs/avizo {};
+
   cpptoml = pkgs.callPackage ./pkgs/cpptoml {};
   wireplumber = pkgs.callPackage ./pkgs/wireplumber { inherit cpptoml; };
 
