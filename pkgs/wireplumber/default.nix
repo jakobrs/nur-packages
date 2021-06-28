@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitLab, fetchpatch
+{ stdenv, lib, fetchFromGitLab, fetchpatch
 , ninja, meson, pkg-config, cmake, git
 , gobject-introspection, pipewire
 , cpptoml }:
@@ -32,6 +32,6 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "Session / policy manager implementation for PipeWire";
-    license = stdenv.lib.licenses.mit;
+    license = lib.licenses.mit;
   };
 }
