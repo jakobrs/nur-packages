@@ -26,8 +26,6 @@ stdenv.mkDerivation rec {
 
   mesonFlags = [ "-Dsystem-lua=true" ];
 
-  hardeningDisable = [ "format" ];
-
   meta = {
     description = "Session / policy manager implementation for PipeWire";
     license = lib.licenses.mit;
